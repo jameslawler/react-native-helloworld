@@ -12,5 +12,9 @@
     ],
     "rules": {
         "no-trailing-spaces": [2, { "skipBlankLines": true }]
+    },
+    "globals": {
+        "it": true,
+        "expect": true
     }
 }
