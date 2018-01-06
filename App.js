@@ -1,26 +1,29 @@
-import { StackNavigator } from 'react-navigation';
-import HomeScreen from './src/screens/home/home';
-import DetailsScreen from './src/screens/details/details';
+import React from 'react';
+import AppContainer from './src/components/app-container/app-container';
+import { Provider } from 'react-redux';
+import {createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import createLogger from 'redux-logger';
+import reducer from './src/reducers';
+//const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__});
 
-const RootNavigator = StackNavigator({
-  Home: {
-    screen: HomeScreen,
-    navigationOptions: {
-      headerTitle: 'Home',
-      headerStyle: {
-        marginTop: 24
-      }
-    },
-  },
-  Details: {
-    screen: DetailsScreen,
-    navigationOptions: {
-      headerTitle: 'Details',
-      headerStyle: {
-        marginTop: 24
-      }
-    },
-  },
-});
+function configureStore(initialState) {
+  const enhancer = compose(
+    applyMiddleware(
+      thunkMiddleware,
+      //loggerMiddleware,
+    ),
+  );
 
-export default RootNavigator;
+  return createStore(reducer, initialState, enhancer);
+}
+
+const store = configureStore({});
+
+const App = () => (
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>
+)
+
+export default App;
