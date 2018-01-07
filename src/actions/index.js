@@ -1,5 +1,5 @@
-import * as DateActions from './dates';
+import * as NewsActions from './news';
 
 export const ActionCreators = Object.assign({},
-  DateActions,
+  NewsActions,
 )

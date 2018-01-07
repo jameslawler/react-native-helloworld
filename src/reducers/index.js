@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import * as datesReducer from './dates';
+import * as newsReducer from './news';
 
 export default combineReducers(Object.assign(
-  datesReducer,
+  newsReducer,
 ))

@@ -1,1 +1,1 @@
-export const GET_DATETIME = 'GET_DATETIME';
+export const FETCH_NEWS = 'FETCH_NEWS';
