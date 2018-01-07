@@ -5,9 +5,8 @@ import {
   ScrollView,
   View,
   Text,
-  TextInput,
   Image,
-  TouchableHighlight,
+  Button,
   StyleSheet
 } from 'react-native';
 
@@ -16,23 +15,37 @@ class Home extends Component {
     super(props);
   }
 
-  searchPressed() {
+  clearPressed() {
+    this.props.clearNews()
+  }
+
+  refreshPressed() {
     this.props.fetchNews()
   }
 
   render() {
     return (
-      <View style={{flex: 1, marginTop: 24}}>
-        <View>
-          <TouchableHighlight onPress={ () => this.searchPressed() }>
-            <Text>Fetch News</Text>
-          </TouchableHighlight>
+      <View style={ styles.scene }>
+        <View style= { styles.refreshSection }>
+          <View style= { styles.refreshButtonsSection }>
+            <Button
+              onPress={ () => this.refreshPressed() }
+              title="Refresh"
+              accessibilityLabel="Refresh the news contents"
+            />
+            <Button
+              onPress={ () => this.clearPressed() }
+              title="Clear"
+              accessibilityLabel="Clear the news contents"
+            />
+          </View>
         </View>
-        <ScrollView style={{flex: 0.8}}>
+        <ScrollView style={ styles.scrollSection }>
           { this.props.newsItems && this.props.newsItems.map((item) => {
             return (
               <View key={item.id}>
-                <Text>{item.title}</Text>
+                <Image source={{ uri: item.image }} style={ styles.newsImage } />
+                <Text style={ styles.newsHeadline }>{item.headline} - {item.image}</Text>
               </View>
             );
           })}
@@ -40,6 +53,41 @@ class Home extends Component {
       </View>
     )
   }
+}
+
+const styles = StyleSheet.create({
+  scene: {
+    flex: 1,
+    marginTop: 20,
+  },
+  refreshSection: {
+    height: 50,
+    borderBottomColor: '#000',
+    borderBottomWidth: 1,
+    padding: 5,
+  },
+  refreshButtonsSection: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  scrollSection: {
+    flex: 0.8,
+  },
+  newsImage: {
+    height: 150,
+  },
+  newsHeadline: {
+    backgroundColor: '#000',
+    color: '#fff',
+    height: 20,
+  }
+});
+
+Home.propTypes = {
+  newsItems: PropTypes.array,
+  clearNews: PropTypes.func,
+  fetchNews: PropTypes.func
 }
 
 function mapStateToProps(state) {
