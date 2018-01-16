@@ -9,18 +9,16 @@ import {
   Button,
   StyleSheet
 } from 'react-native';
+import * as newsActions from '../../actions/news';
+import { bindActionCreators } from 'redux';
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   clearPressed() {
-    this.props.clearNews()
+    this.props.clearNews();
   }
 
   refreshPressed() {
-    this.props.fetchNews()
+    this.props.fetchNews();
   }
 
   render() {
@@ -45,7 +43,10 @@ class Home extends Component {
             return (
               <View key={item.id}>
                 <Image source={{ uri: item.image }} style={ styles.newsImage } />
-                <Text style={ styles.newsHeadline }>{item.headline} - {item.image}</Text>
+                <Text style={ styles.newsHeadline }
+                  onPress={ () => this.props.navigation.navigate('Detail')}>
+                  {item.headline} - {item.image}
+                </Text>
               </View>
             );
           })}
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
 });
 
 Home.propTypes = {
+  navigation: PropTypes.object.isRequired,
   newsItems: PropTypes.array,
   clearNews: PropTypes.func,
   fetchNews: PropTypes.func
@@ -96,4 +98,15 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Home);
+function mapDispatchToActions(dispatch) {
+  return bindActionCreators(newsActions, dispatch);
+}
+
+Home.navigationOptions = {
+  title: 'Home',
+  headerStyle: {
+    marginTop: 24
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToActions)(Home);
