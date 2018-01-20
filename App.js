@@ -1,5 +1,5 @@
 import React from 'react';
-import AppContainer from './src/components/app-container/app-container';
+import AppContainer from './src/navigators/app-navigator';
 import { Provider } from 'react-redux';
 import {createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
