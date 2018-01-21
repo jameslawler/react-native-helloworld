@@ -5,15 +5,15 @@ import {
   StyleSheet
 } from 'react-native';
 
-class Detail extends Component {
+class Notes extends Component {
   static navigationOptions = {
-    tabBarLabel: 'Details',
+    tabBarLabel: 'Notes',
   };
 
   render() {
     return (
       <View style={ styles.scene }>
-        <Text>Details here</Text>
+        <Text>Notes here</Text>
       </View>
     )
   }
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Detail;
+export default Notes;

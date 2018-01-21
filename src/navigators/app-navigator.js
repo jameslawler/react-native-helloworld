@@ -5,11 +5,16 @@ import { BackHandler } from "react-native";
 import { addNavigationHelpers, NavigationActions, StackNavigator } from 'react-navigation';
 
 import HomeScreen from '../components/home-container/home-container';
-import DetailScreen from '../components/detail-container/detail-container';
+import DetailNavigator from './detail-navigator';
 
 export const AppNavigator = StackNavigator({
   Home: { screen: HomeScreen },
-  Detail: { screen: DetailScreen },
+  Detail: {
+    screen: DetailNavigator,
+    navigationOptions: () => ({
+      header: null,
+    })
+  },
 });
 
 class AppWithNavigationState extends React.Component {
