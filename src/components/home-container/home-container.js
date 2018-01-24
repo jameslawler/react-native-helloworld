@@ -103,10 +103,7 @@ function mapDispatchToActions(dispatch) {
 }
 
 Home.navigationOptions = {
-  title: 'Home',
-  headerStyle: {
-    marginTop: 24
-  }
+  title: 'Home'
 };
 
 export default connect(mapStateToProps, mapDispatchToActions)(Home);
