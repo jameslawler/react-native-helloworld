@@ -1,8 +1,8 @@
 import { TabNavigator } from 'react-navigation';
 
-import DetailScreen from '../components/detail-container/detail-container';
-import ReadScreen from '../components/clean-view-container/clean-view-container';
-import NotesScreen from '../components/notes-container/notes-container';
+import DetailScreen from '../components/detail-container';
+import ReadScreen from '../components/clean-view-container';
+import NotesScreen from '../components/notes-container';
 
 export default TabNavigator({
   Detail: {

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { BackHandler } from "react-native";
 import { addNavigationHelpers, NavigationActions, StackNavigator } from 'react-navigation';
 
-import HomeScreen from '../components/home-container/home-container';
+import HomeScreen from '../components/home-container';
 import DetailNavigator from './detail-navigator';
 
 export const AppNavigator = StackNavigator({
